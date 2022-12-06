@@ -700,6 +700,10 @@
            MOVE R2-MEDREC2 TO X-MEDREC2
            MOVE R2-MEDREC3 TO X-MEDREC3
            MOVE X-MEDREC TO R2-MEDREC
+
+           MOVE SPACE TO A-GARNAME LNAME FNAME
+           UNSTRING R1-PATNAME DELIMITED BY ", " INTO LNAME FNAME
+           STRING LNAME ";" FNAME DELIMITED BY "  " INTO A-GARNAME
            
            IF R2-MEDREC = "00000000"
                DISPLAY "MRN IS ZEROES FOR " R1-PATNAME
@@ -722,10 +726,6 @@
                    MOVE G-PRINS TO PRIOR-INS
                END-READ   
            END-READ
-
-           MOVE SPACE TO A-GARNAME LNAME FNAME
-           UNSTRING R1-PATNAME DELIMITED BY ", " INTO LNAME FNAME
-           STRING LNAME ";" FNAME DELIMITED BY "  " INTO A-GARNAME
 
            MOVE R1-GARZIP TO ZIPCODE
            
@@ -1049,8 +1049,7 @@
                    DISPLAY "NO INS ON FILE" 
                    PERFORM REPLACE-2 THRU REPLACE-2-EXIT
                END-READ
-               DISPLAY INS-NAME     
-               MOVE INS-ASSIGN TO A-PR-ASSIGN
+               DISPLAY INS-NAME      
              ELSE
                PERFORM REPLACE-2 THRU REPLACE-2-EXIT  
              END-IF
@@ -1712,8 +1711,7 @@
            end-if
 
            
-           IF ((REF = "A3Z"
-               OR "B1T" OR "B51" OR "B7C" 
+           IF ((REF = "B1T" OR "B51" OR "B7C" 
                OR "D55" OR "D3Z"
                OR "F4J" OR "F34" OR "F2S"
                OR "G0T" OR "G0A" OR "G36" OR "G4U"
