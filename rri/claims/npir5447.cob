@@ -1226,9 +1226,13 @@
            MOVE INS-NAME TO NM1-NAMEL
            MOVE "PI" TO NM1-EINSS
            MOVE INS-CAID TO NM1-CODE
-           IF G-PRINS = "900"
-             MOVE "BV" TO NM1-CODE 
-           END-IF
+
+           IF G-SE-GROUP NOT = SPACE
+             MOVE G-SE-GROUP TO NM1-CODE.
+
+           IF G-SE-GROUP(4:1) NOT = SPACE
+             MOVE INS-CAID TO NM1-CODE. 
+
            MOVE SPACE TO SEGFILE01
            WRITE SEGFILE01 FROM NM101.
 
@@ -1537,6 +1541,12 @@
 
        SVD-CAS.
            MOVE INS-CAID TO SVD-1
+
+           IF G-SE-GROUP NOT = SPACE
+             MOVE G-SE-GROUP TO NM1-CODE.
+
+           IF G-SE-GROUP(4:1) NOT = SPACE
+             MOVE INS-CAID TO NM1-CODE. 
 
            COMPUTE NUM7 = CAS-PAID(X)
            PERFORM AMT-LEFT
